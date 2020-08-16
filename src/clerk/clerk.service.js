@@ -28,4 +28,26 @@ export class ClerkService {
         const response = await fetch(`${membersUrl}/?key=${this.API_KEY}&${urlParams}`);
         return response.json();
     }
+
+    /**
+     * Get a member by id
+     * @params {string} - member id
+     * @returns {any}
+     */
+    async getMemberDetails(id) {
+        const { membersUrl } = endpoints;
+        const urlParams = `$filter=_id eq '${id}'`;
+        const response = await fetch(`${membersUrl}/?key=${this.API_KEY}&${urlParams}`);
+        return response.json();
+    }
+
+    /**
+     * Fetch the vote information
+     * @returns {any}
+     */
+    async getMembersVoteInfo() {
+        const { votesUrl } = endpoints;
+        const response = await fetch(`${votesUrl}&key=${this.API_KEY}`);
+        return response.json();
+    }
 }

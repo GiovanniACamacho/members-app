@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Member from '../Member/Member';
+import MemberItem from './MemberItem';
 import { ClerkService } from '../clerk/clerk.service';
 import { List, Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 import './MemberList.css';
-import MemberFilter from '../MemberFilter/MemberFilter';
-import MemberSearch from '../MemberSearch/MemberSearch';
+import MemberFilter from './MemberFilter';
+import MemberSearch from './MemberSearch';
 
 export default function MemberList() {
     const [ clerkService ] = useState(new ClerkService());
@@ -96,7 +96,14 @@ export default function MemberList() {
             }}
             dataSource={data.results}
             loading={loading}
-            renderItem={m => <Member key={m._id} name={m.officialName} isActive={m.active === 'yes'} activeDate={m.oathOfOfficeDate} info={m.congresses[0]}  />}
+            renderItem={m => <MemberItem 
+                key={m._id}
+                id={m._id}
+                name={m.officialName}
+                isActive={m.active === 'yes'}
+                activeDate={m.oathOfOfficeDate}
+                info={m.congresses[0]}
+            />}
         />
     );
 }

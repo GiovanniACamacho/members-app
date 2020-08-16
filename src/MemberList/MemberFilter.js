@@ -21,6 +21,7 @@ export default function MemberFilter(props) {
     const filterByAffiliation = (val) => {
         const query = (val) ? `congresses/partyAffiliations/name eq '${val}'` : null;
         const newFilters = { ...filters, affiliation: query };
+        setValues({ ...vals, affiliation: val });
         updateFilters(newFilters);
     };
 
@@ -32,6 +33,7 @@ export default function MemberFilter(props) {
     const filterByChamber = (val) => {
         const query = (val) ? `congresses/chamber eq '${val}'` : null;
         const newFilters = { ...filters, chamber: query };
+        setValues({ ...vals, chamber: val });
         updateFilters(newFilters);
     };
 
@@ -40,9 +42,10 @@ export default function MemberFilter(props) {
      * Ex. yes or no
      * @param {string} val - active selected
      */
-    const filterActive = (val) => {
+    const filterByStatus = (val) => {
         const query = (val) ? `active eq '${val}'` : null;
-        const newFilters = { ...filters, active: query };
+        const newFilters = { ...filters, status: query };
+        setValues({ ...vals, status: val });
         updateFilters(newFilters);
     };
 
@@ -54,6 +57,7 @@ export default function MemberFilter(props) {
     const filterByState = (val) => {
         const query = (val) ? `congresses/stateCode eq '${val}'` : null;
         const newFilters = { ...filters, state: query };
+        setValues({ ...vals, state: val });
         updateFilters(newFilters);
     };
 
@@ -91,7 +95,7 @@ export default function MemberFilter(props) {
      * Clear all the filters
      */
     const clearFilters = () => {
-        const empty = { active: null, chamber: null, state: null, affiliation: null };
+        const empty = { status: null, chamber: null, state: null, affiliation: null };
         setValues(empty);
         updateFilters(empty);
     };
@@ -99,9 +103,9 @@ export default function MemberFilter(props) {
     return (
         <Space>
             <label>Filters: </label>
-            <Select placeholder="Active" allowClear="true" onChange={filterActive} value={vals.active}>
-                <Select.Option value="yes">Active only</Select.Option>
-                <Select.Option value="no">Inactive only</Select.Option>
+            <Select placeholder="Status" allowClear="true" onChange={filterByStatus} value={vals.status} style={{ width: 110 }}>
+                <Select.Option value="yes">Active</Select.Option>
+                <Select.Option value="no">Inactive</Select.Option>
             </Select>
             <Select placeholder="Chamber" allowClear="true" onChange={filterByChamber} value={vals.chamber}>
                 <Select.Option value="House">House</Select.Option>

@@ -1,0 +1,15 @@
+.ant-list {
+    background-color: #fdfdfd;
+}
+
+.ant-list-item:nth-child(odd) {
+    background-color: #fff;
+}
+
+.ant-list-item:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.ant-list-empty-text {
+    background-color: #fff;
+}
