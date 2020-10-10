@@ -8,10 +8,12 @@ import MemberDetails from './MemberDetails';
 import MemberContactInfo from './MemberContactInfo';
 import MemberCommittees from './MemberCommittees';
 import MemberVoteInfo from './MemberVoteInfo';
+import { environment } from '../environment';
 
 export default function Member() {
     const params = useParams();
     const { id } = params;
+    const imgUrl = `${environment.imgUrl}/${id}.jpg`;
     const [ clerkService ] = useState(new ClerkService());
     const [ member, setMember ] = useState({});
     const [ loading, setLoading ] = useState(false);
@@ -55,7 +57,18 @@ export default function Member() {
 
     return (
         <div>
-            <Card title={<Space><ArrowLeftOutlined onClick={() => window.history.back()} /><span>{formalName()}</span></Space>} loading={loading}>
+            <Card title={
+                <div>
+                    <Space>
+                        <ArrowLeftOutlined onClick={() => window.history.back()} />
+                        <span>{formalName()}</span>
+                    </Space>
+                    <div>
+                        <img src={imgUrl} alt="Profile" width="150" />
+                    </div>
+                </div>
+                }
+                loading={loading}>
                 { member._id ?
                     <div>
                         <MemberDetails

@@ -20,7 +20,7 @@ export default function MemberDetails(props) {
             <Descriptions.Item label="Affiliation">{info.partyAffiliations[0].name}</Descriptions.Item>
             <Descriptions.Item label="State">{stateList[info.stateCode]}</Descriptions.Item>
             <Descriptions.Item label="District">{info.stateDistrict}</Descriptions.Item>
-            <Descriptions.Item label="Home Address">{city}, {region}</Descriptions.Item>
+            <Descriptions.Item label="Residence">{city}, {region}</Descriptions.Item>
         </Descriptions>
     )
 }

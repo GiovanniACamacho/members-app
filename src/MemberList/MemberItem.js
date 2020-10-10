@@ -1,9 +1,10 @@
 import React from 'react';
-import { List, Space, Button, Tooltip } from 'antd';
+import { List, Space, Button, Tooltip, Avatar } from 'antd';
 import './MemberItem.css';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import { formatDate } from '../utils/utils';
+import { environment } from '../environment';
 
 export default function MemberItem(props) {
     const { name, info, isActive, activeDate, id } = props;
@@ -13,6 +14,7 @@ export default function MemberItem(props) {
     const buttonRef = React.createRef();
     const history = useHistory();
     const link = `/member/${id}`;
+    const imgUrl = `${environment.imgUrl}/${id}.jpg`;
 
     /**
      * Navigate to member's page
@@ -25,6 +27,9 @@ export default function MemberItem(props) {
         <List.Item
             actions={[<Button ref={buttonRef} htmlType="button" onClick={navigateTo}>more info</Button>]}>
             <List.Item.Meta
+                avatar={
+                    <Avatar src={imgUrl} />
+                  }
                 title={
                     <Space>
                         <a className="link" href={link}>{name}</a>
